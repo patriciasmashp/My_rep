@@ -7,7 +7,7 @@ import check
 
 
 token = ''
-# e02f92418b0a4a55aee1af3aeef25ee9cc9539374706c5372356ab323dfa9eb81a95f4435fa346a35630f
+
 session = requests.Session()
 
 group_id = 188695946
