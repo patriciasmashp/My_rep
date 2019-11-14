@@ -30,9 +30,9 @@ try:
 	    answer+=str(i)+'\n'
 
 except:
-	pass
+	print('Eror_from_messege')
 
-
+print(answer)
 
 try:
     vk_session.auth(token_only=True)
@@ -44,4 +44,4 @@ for event in longpoll.listen():
     if event.type == VkBotEventType.MESSAGE_NEW:
     	if event.obj.message['text'].lower() == 'замены':
             request = event.obj.message['peer_id']
-            vk.method('messages.send', {'peer_id': request, 'message': '{0}'.format(answer), 'random_id': rand()})
+            vk.method('messages.send', {'peer_id': request, 'message': '%s'%answer, 'random_id': rand()})
