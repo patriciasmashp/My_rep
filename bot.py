@@ -6,8 +6,8 @@ import random
 import check
 
 
-token = 'c2106e42075d6e0ff11483a4285fa53633c1deb7a8e4370bbcc23c1d55b499df2edd41f5a4e2106e4ec7a'
-# e02f92418b0a4a55aee1af3aeef25ee9cc9539374706c5372356ab323dfa9eb81a95f4435fa346a35630f
+token = ''
+
 session = requests.Session()
 
 group_id = 188695946
