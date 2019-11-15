@@ -13,9 +13,9 @@ headers = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,imag
 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36'}
 
 b_url = 'http://ntgmk.ru/program/view_zamen.php'
-
 session = requests.Session()
 request = session.get(b_url, headers=headers)
+soup = bs(request.content, 'lxml')
 replace = []
 res = []
 date = []
@@ -47,21 +47,33 @@ def Out_repl():
 	for i in replace:
 		res.append(i.text.replace('\n',''))
 	return res
+
+def rsoup():
+	global soup
+	return soup
 				
 
 
 def resoult():
 	if request.status_code == 200:
 		soup = bs(request.content, 'lxml')
-		body_tag = soup.table
-	
+		body_tag = soup.table	
 		all_soup = body_tag.findAll()	
 		find_repl_753(all_soup)
 		return (Out_repl())
 
-
-
-
+def check_rep(ba):
+	global request
+	Pnew_soup = bs(request.content, 'lxml')
+	if ba.table == Pnew_soup.table:
+		print('g')
+		return False
+	else:
+		print(ba)
+		return True
+check_rep(soup)
+print()
+check_rep(soup)
 	# for i in body_tag.findAll('td',attrs={'colspan':'7','height':'18','bgcolor':"#f6f6f6",'class':"tbl_c"}):
 	# 	date.append(i)
 	# if int(datetime.date.today().strftime('%d')) <	int(date[0].text[6:8]):

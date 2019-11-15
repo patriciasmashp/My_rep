@@ -15,15 +15,17 @@ vk_session = vk_api.VkApi(token=token)
 bot_api = vk_session.get_api()
 
 
-def answer(peer_id, message):
-    vk.method('messages.send', {'peer_id': peer_id, 'message': message, 'random_id': rand()})
+# def answerf(peer_id, message):
+#     vk.method('messages.send', {'peer_id': peer_id, 'message': message, 'random_id': rand()})
 
 
 def rand():
     r = random.randint(0, 500000000000000)
     print(r)
     return r
-# repl = str(check.replasment())
+
+
+
 answer=''
 try:
     for i in check.resoult():
@@ -32,16 +34,26 @@ try:
 except:
 	print('Eror_from_messege')
 
-print(answer)
+
+
+
 
 try:
     vk_session.auth(token_only=True)
 except vk_api.AuthError as error_msg:
     print(error_msg)
+
+
 vk = vk_api.VkApi(token=token)
 longpoll = VkBotLongPoll(vk, group_id)
+
+
+if check.check_rep(check.rsoup()):
+	vk.method('messages.send', {'peer_id': 2000000002, 'message': '%s'%answer, 'random_id': rand()})
 for event in longpoll.listen():
     if event.type == VkBotEventType.MESSAGE_NEW:
     	if event.obj.message['text'].lower() == 'замены':
             request = event.obj.message['peer_id']
             vk.method('messages.send', {'peer_id': request, 'message': '%s'%answer, 'random_id': rand()})
+    if event.obj.message['text'].lower() == 'uvolen':
+            break
