@@ -21,6 +21,7 @@ res = []
 date = []
 def find_repl_753(b):
 	d = None
+	f = ''
 	for i in b:
 		if i is not None:
 			d = i.findAll('td',attrs={'colspan':'7','height':'18','bgcolor':"#f6f6f6",'class':"tbl_c"})
@@ -34,24 +35,16 @@ def find_repl_753(b):
 
 		if a is not None :
 			if a.text[-2] == '3' and a.text[-3] == '5' and a.text[-4] == '7':
-				replace.append(a.parent)
+				f+=a.parent.text.replace('\n', '')+'\n'
+	return f
 def decor(func):
 	def wrapper():
 		print('Замены на {0}:'.format(date[0][0].text[6:8]))
 		resoult= func()
 		return resoult
 	return wrapper
-@decor
-def Out_repl():
-	res = []
-	for i in replace:
-		res.append(i.text.replace('\n',''))
-	return res
 
-def rsoup():
-	global soup
-	return soup
-				
+
 
 
 def resoult():
@@ -59,8 +52,9 @@ def resoult():
 		soup = bs(request.content, 'lxml')
 		body_tag = soup.table	
 		all_soup = body_tag.findAll()	
-		find_repl_753(all_soup)
-		return (Out_repl())
+		a = find_repl_753(all_soup)
+		return a
+		
 
 def check_rep(ba):
 	global request
@@ -71,13 +65,7 @@ def check_rep(ba):
 	else:
 		print(ba)
 		return True
-check_rep(soup)
-print()
-check_rep(soup)
-	# for i in body_tag.findAll('td',attrs={'colspan':'7','height':'18','bgcolor':"#f6f6f6",'class':"tbl_c"}):
-	# 	date.append(i)
-	# if int(datetime.date.today().strftime('%d')) <	int(date[0].text[6:8]):
-		# print( date[0].text[6:8] )
+
 
 
 	
