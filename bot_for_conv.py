@@ -7,7 +7,7 @@ import check
 import time 
 
 
-token = ''
+token = 'c2106e42075d6e0ff11483a4285fa53633c1deb7a8e4370bbcc23c1d55b499df2edd41f5a4e2106e4ec7a'
 # 
 session = requests.Session()
 
@@ -55,14 +55,17 @@ longpoll = VkBotLongPoll(vk, group_id)
 
 
 for event in longpoll.listen():
-    if event.type == VkBotEventType.MESSAGE_NEW:
-        if event.obj.message['text'].lower() == 'замены':
-            request = event.obj.message['peer_id']
-            vk.method('messages.send', {'peer_id': request, 'message': check.resoult(), 'random_id': rand()})
-        if event.obj.message['text'].lower() == 'тебе за':
-            if event.obj.message['from_id'] in (569855371):
+    try:
+        if event.type == VkBotEventType.MESSAGE_NEW:
+            if event.obj.message['text'].lower() == 'замены':
                 request = event.obj.message['peer_id']
-                vk.method('messages.send', {'peer_id': request, 'message': 'ДоПусКОм!!!!1!!', 'random_id': rand(), 'attachment':'photo-188695946_457239018'})
-        if event.obj.message['text'].lower() == 'uvolen':
-            break
+                vk.method('messages.send', {'peer_id': request, 'message': check.resoult(), 'random_id': rand()})
+            if event.obj.message['text'].lower() == 'тебе за':
+                if event.obj.message['from_id'] in (569855371):
+                    request = event.obj.message['peer_id']
+                    vk.method('messages.send', {'peer_id': request, 'message': 'ДоПусКОм!!!!1!!', 'random_id': rand(), 'attachment':'photo-188695946_457239018'})
+            if event.obj.message['text'].lower() == 'uvolen':
+                break
+    except Exception:
+        print('Я ем говно')
 

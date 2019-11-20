@@ -29,8 +29,7 @@ def find_repl_753(b):
 				date.append(d)
 	for tag in b: #b- all_soup
 		a=(tag.find('td',attrs={'height':"12",'class':"tbl_c"}))
-		if tag.text[6:8] == date[1][0].text[6:8]:
-			
+		if tag.text[6:8] == date[1][0].text[6:8]:	
 			break
 
 		if a is not None :
@@ -69,4 +68,4 @@ def check_rep(ba):
 
 
 	
-
+print(resoult())
