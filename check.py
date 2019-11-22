@@ -12,14 +12,11 @@ headers = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,imag
 'Upgrade-Insecure-Requests': '1',
 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36'}
 
-b_url = 'http://ntgmk.ru/program/view_zamen.php'
-session = requests.Session()
-request = session.get(b_url, headers=headers)
-soup = bs(request.content, 'lxml')
-replace = []
-res = []
-date = []
+
+
+
 def find_repl_753(b):
+	date = []
 	d = None
 	f = ''
 	for i in b:
@@ -47,6 +44,9 @@ def decor(func):
 
 
 def resoult():
+	b_url = 'http://ntgmk.ru/program/view_zamen.php'
+	session = requests.Session()
+	request = session.get(b_url, headers=headers)
 	if request.status_code == 200:
 		soup = bs(request.content, 'lxml')
 		body_tag = soup.table	
