@@ -59,13 +59,17 @@ for event in longpoll.listen():
         if event.type == VkBotEventType.MESSAGE_NEW:
             if event.obj.message['text'].lower() == 'замены':
                 request = event.obj.message['peer_id']
-                vk.method('messages.send', {'peer_id': request, 'message': check.resoult(), 'random_id': rand()})
+                print(type(check.resoult()))
+                try:
+                	vk.method('messages.send', {'peer_id': request, 'message': check.resoult(), 'random_id': rand()})
+                except Exception as e:
+                	print(e)
             if event.obj.message['text'].lower() == 'тебе за':
-                if event.obj.message['from_id'] in (569855371):
+                if event.obj.message['from_id'] in [569855371,171791677]:
                     request = event.obj.message['peer_id']
                     vk.method('messages.send', {'peer_id': request, 'message': 'ДоПусКОм!!!!1!!', 'random_id': rand(), 'attachment':'photo-188695946_457239018'})
             if event.obj.message['text'].lower() == 'uvolen':
                 break
-    except Exception:
-        print('Я ем говно')
+    except Exception as e:
+        raise e
 
